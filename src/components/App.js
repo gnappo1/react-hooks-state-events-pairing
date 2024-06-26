@@ -1,18 +1,28 @@
+import { useState } from "react"
+
 import video from "../data/video.js";
+import Button from "./Button.jsx";
+import Video from "./Video.jsx";
+import CommentContainer from "./CommentContainer.jsx";
 
 function App() {
-  console.log("Here's your data:", video);
+  const [show, setShow] = useState(false)
+
+  const buttonText = show ? "Hide" : "Show"
+  
+  const onClick = (e) => {
+    setShow(currentValue => !currentValue)
+  }
 
   return (
     <div className="App">
-      <iframe
-        width="919"
-        height="525"
-        src="https://www.youtube.com/embed/dQw4w9WgXcQ"
-        frameBorder="0"
-        allowFullScreen
-        title="Thinking in React"
-      />
+      <Video video={video} />
+      <Button text={video.upvotes + " 👍🏻"} />
+      <Button text={video.downvotes + " 👎🏻"} />
+      <br /><br />
+      <Button text={buttonText + " Comments"} onClick={onClick}/>
+      <hr />
+      {show && <CommentContainer comments={video.comments} />}
     </div>
   );
 }
