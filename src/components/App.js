@@ -1,4 +1,7 @@
 import video from "../data/video.js";
+import VideoComments from "./VideoComments.jsx";
+import VideoDetails from "./VideoDetails.jsx";
+import VideoLikes from "./VideoLikes.jsx";
 
 function App() {
   console.log("Here's your data:", video);
@@ -8,13 +11,46 @@ function App() {
       <iframe
         width="919"
         height="525"
-        src="https://www.youtube.com/embed/dQw4w9WgXcQ"
-        frameBorder="0"
+        src={video.embedUrl}
         allowFullScreen
-        title="Thinking in React"
+        title={video.title}
       />
+
+      <VideoDetails title={video.title} views={video.views} createdAt={video.createdAt} />
+      <VideoLikes upvotes={video.upvotes} downvotes={video.downvotes} />
+      < br />
+      <VideoComments comments={video.comments} />
     </div>
   );
 }
 
 export default App;
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
